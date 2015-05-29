@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>welcome</title>
+</h:head>
+<body>
+	<h:form>
+		<p:dataTable var="listTaskJob" value="#{mainBean.listTask}">
+			<p:column headerText="IdTask">
+				<h:outputText value="#{listTaskJob.idTask}" />
+			</p:column>
+
+			<p:column headerText="NameTask">
+				<h:outputText value="#{listTaskJob.nameTask}" />
+			</p:column>
+
+			<p:column headerText="TimeUpdate">
+				<h:outputText value="#{listTaskJob.timeUpdate}">
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Status">
+
+				<h:selectOneMenu value="#{listTaskJob.statusTask}" style="color: #{listTaskJob.colorTask}">
+					<f:selectItem itemValue="Done!" itemLabel="Done!" />
+					<f:selectItem itemValue="Doing..." itemLabel="Doing..." />
+					<f:selectItem itemValue="Do not." itemLabel="Do not." />
+				</h:selectOneMenu>
+			</p:column>
+
+			<p:column headerText="Public">
+				<h:selectBooleanCheckbox id="public"
+					value="#{listTaskJob.publicTask}" />
+			</p:column>
+
+			<p:column headerText="Action">
+				<h:commandButton action="#{mainBean.deleteListTask(listTaskJob)}"
+					value="Delete">
+				</h:commandButton>/
+			<h:commandButton action="#{mainBean.editListTask(listTaskJob)}"
+					value="Edit">
+				</h:commandButton>
+			</p:column>
+		</p:dataTable>
+		<h:panelGrid columns="10" cellpadding="2">
+			<h:commandButton action="#{mainBean.sortTaskBy}" value="Sort by"></h:commandButton>
+			<h:selectOneMenu value="#{mainBean.sortBy}">
+				<f:selectItem itemValue="Name" itemLabel="Name" />
+				<f:selectItem itemValue="ID Task" itemLabel="ID Task" />
+				<f:selectItem itemValue="Non" itemLabel="Non" />
+			</h:selectOneMenu>
+
+			<h:outputLabel for="keywordSearch" value="Keyword:" />
+			<p:inputText id="keywordSearch" value="#{mainBean.keyword}" />
+			<h:commandButton action="#{mainBean.searchTask}" value="Search"></h:commandButton>
+			
+			<h:outputLabel for = "selectFilter" value = "Status"/>
+			<h:selectOneMenu id = "selectFilter" value="#{mainBean.filterByStatus}">
+				<f:selectItem itemValue="All" itemLabel="All"/>
+				<f:selectItem itemValue="Done!" itemLabel="Done!" />
+				<f:selectItem itemValue="Doing..." itemLabel="Doing..." />
+				<f:selectItem itemValue="Do not." itemLabel="Do not." />
+			</h:selectOneMenu>
+			<h:outputLabel for = "selectFilterPublic" value = "Public"/>
+			<h:selectOneMenu id = "selectFilterPublic" value="#{mainBean.filterByPublic}">
+				<f:selectItem itemValue="All" itemLabel="All"/>
+				<f:selectItem itemValue="Yes" itemLabel="Yes" />
+				<f:selectItem itemValue="No" itemLabel="No" />
+			</h:selectOneMenu>
+			<h:commandButton action = "#{mainBean.filter}" value = "Filter"/>
+		</h:panelGrid>
+		<h:panelGrid columns="1" cellpadding="1">Add and Edit</h:panelGrid>
+		<h:panelGrid columns="2" cellpadding="6">
+			<h:outputLabel for="id" value="IdTaskJob:" />
+			<p:inputText id="id" value="#{mainBean.idTask}" />
+
+			<h:outputLabel for="name" value="NameTaskJob:" />
+			<p:inputText id="name" value="#{mainBean.nameTask}" />
+
+			<h:outputLabel for="time" value="TimeUpdte:" />
+			<p:outputLabel id="time" value="#{mainBean.timeUpdate}"/>
+			<h:outputLabel for="status" value="StatusTaskJob:" />
+			<h:selectOneMenu value="#{mainBean.statusTask}" id="status">
+				<f:selectItem itemValue="Done!" itemLabel="Done!" />
+				<f:selectItem itemValue="Doing..." itemLabel="Doing..." />
+				<f:selectItem itemValue="Do not." itemLabel="Do not." />
+			</h:selectOneMenu>
+
+			<h:outputLabel for="public" value="Public:" />
+			<h:selectBooleanCheckbox id="public" value="#{mainBean.publicTask}" />
+
+			<h:commandButton value="Add/Edit" action="#{mainBean.addTask}"></h:commandButton>
+		</h:panelGrid>
+		
+		<h:panelGrid  columns="2" cellpadding="2">
+			<p:commandButton value="Export" action="#{mainBean.exportF}"></p:commandButton>
+		</h:panelGrid>
+	</h:form>
+</body>
+</html>

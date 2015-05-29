@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+	<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="accountLogin" value="Username:" />
+				<p:inputText id="accountLogin" value="#{mainBean.accountLogin}"
+					required="true" label="accountLogin" />
+
+				<h:outputLabel for="passwordLogin" value="Password:" />
+				<p:password id="passwordLogin" value="#{mainBean.passwordLogin}"
+					required="true" label="passwordLogin" />
+
+				<h:commandButton id="button" value="Login" action="#{mainBean.doLogin}"/>
+			</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

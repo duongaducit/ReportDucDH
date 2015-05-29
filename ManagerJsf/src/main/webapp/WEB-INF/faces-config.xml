@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<managed-bean>
+		<managed-bean-name>mainBean</managed-bean-name>
+		<managed-bean-class>com.asian.jsf.manager.model.bean.MainBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>service</property-name>
+			<property-class>com.asian.jsf.manager.service.impl.ServiceDatabaseImpl</property-class>
+			<value>#{serviceBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>serviceBean</managed-bean-name>
+		<managed-bean-class>com.asian.jsf.manager.service.impl.ServiceDatabaseImpl</managed-bean-class>
+		<managed-bean-scope>none</managed-bean-scope>
+		<managed-property>
+			<property-name>daoService</property-name>
+			<property-class>com.asian.jsf.manager.model.dao.impl.ConnectDatabaseImpl</property-class>
+			<value>#{daoBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>daoBean</managed-bean-name>
+		<managed-bean-class>com.asian.jsf.manager.model.dao.impl.ConnectDatabaseImpl</managed-bean-class>
+		<managed-bean-scope>none</managed-bean-scope>
+	</managed-bean>
+</faces-config>
